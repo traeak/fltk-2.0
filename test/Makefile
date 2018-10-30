@@ -33,14 +33,6 @@ include ../makeinclude
 
 
 #
-# FLUID file rules...
-#
-
-.fl.cxx .fl.h:
-	../fluid/fluid2$(EXEEXT) -c $<
-
-
-#
 # Files for this directory...
 #
 
@@ -57,7 +49,6 @@ CPPFILES = \
 	buttons.cxx \
 	cairo.cxx \
 	callbacks.cxx \
-	checkers.cxx \
 	clock.cxx \
 	color_chooser.cxx \
 	cube.cxx \
@@ -127,7 +118,6 @@ TARGETS = \
 	browser$(EXEEXT) \
 	cairo$(EXEEXT) \
 	callbacks$(EXEEXT) \
-	checkers$(EXEEXT) \
 	clock$(EXEEXT) \
 	button$(EXEEXT) \
 	buttons$(EXEEXT) \
@@ -144,7 +134,6 @@ TARGETS = \
 	exception$(EXEEXT) \
 	file_chooser$(EXEEXT) \
 	fonts$(EXEEXT) \
-	fractals$(EXEEXT) \
 	glpuzzle$(EXEEXT) \
 	gl_overlay$(EXEEXT) \
 	hello$(EXEEXT) \
@@ -258,11 +247,6 @@ cursor$(EXEEXT): cursor.o
 fullscreen$(EXEEXT): fullscreen.o ../lib/$(LIBPREFIX)fltk2_gl$(LIBSUFFIX)
 	echo Linking $@...
 	$(CXX) -I.. $(CXXFLAGS) $< $(LINKFLTKGL) $(GLDLIBS) -o $@
-	$(POSTBUILD) $@ ../fltk/mac.r
-
-fractals$(EXEEXT): fractals.o fracviewer.o ../lib/$(LIBPREFIX)fltk2_glut$(LIBSUFFIX)  ../lib/$(LIBPREFIX)fltk2_gl$(LIBSUFFIX)
-	echo Linking $@...
-	$(CXX) -I.. $(CXXFLAGS) fractals.o fracviewer.o ../lib/$(LIBPREFIX)fltk2_glut$(LIBSUFFIX) $(LINKFLTKGL) $(GLDLIBS) -o $@
 	$(POSTBUILD) $@ ../fltk/mac.r
 
 glpuzzle$(EXEEXT): glpuzzle.o ../lib/$(LIBPREFIX)fltk2_glut$(LIBSUFFIX)  ../lib/$(LIBPREFIX)fltk2_gl$(LIBSUFFIX)

@@ -85,7 +85,6 @@ SHAREDSUFFIX="@SHAREDSUFFIX@"
 
 # Check for local invocation, and update paths accordingly...
 if test -e "$selfdir/fltk/Window.h"; then
-  bindir="$selfdir/fluid"
   includedir="$selfdir"
   libdir="$selfdir/lib"
   prefix="$selfdir"

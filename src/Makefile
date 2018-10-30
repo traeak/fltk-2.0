@@ -83,7 +83,6 @@ CPPFILES = \
 	filename_match.cxx \
 	filename_name.cxx \
 	fillrect.cxx \
-	Fl_Menu_Item.cxx \
 	FloatInput.cxx \
 	fltk_theme.cxx \
 	Font.cxx \

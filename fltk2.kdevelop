@@ -144,7 +144,6 @@
       <group pattern="fltk/*.h" name="fltk" />
       <group pattern="src/*.cxx;src/*.fl" name="src" />
       <group pattern="test/*.cxx" name="test" />
-      <group pattern="fluid/*.cxx;fluid/*.fl" name="fluid" />
       <hidenonprojectfiles>false</hidenonprojectfiles>
       <hidenonlocation>false</hidenonlocation>
     </groups>

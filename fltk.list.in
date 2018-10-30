@@ -49,30 +49,24 @@ $CAT3EXT=@CAT3EXT@
 $DSOPREFIX=@DSOPREFIX@
 $DSOSUFFIX=@DSOSUFFIX@
 
-$FLUID=@FLUID@
 $GLDEMOS=@GLDEMOS@
 
 %system darwin
-%postinstall $bindir/fltk2-config -post $bindir/fluid
+%postinstall $bindir/fltk2-config
 f 0444 root sys $includedir/fltk/mac.r fltk/mac.r
 %system all
 
-# FLUID
-f 0555 root sys $bindir/fluid fluid/$FLUID
 f 0555 root sys $bindir/fltk2-config fltk2-config
 
 # Man pages
-f 0444 root sys $mandir/cat1/fluid.$CAT1EXT documentation/fluid.$CAT1EXT
 f 0444 root sys $mandir/cat1/fltk2-config.$CAT1EXT documentation/fltk2-config.$CAT1EXT
 f 0444 root sys $mandir/cat3/fltk.$CAT3EXT documentation/fltk.$CAT3EXT
-f 0444 root sys $mandir/man1/fluid.1 documentation/fluid.man
 f 0444 root sys $mandir/man1/fltk2-config.1 documentation/fltk2-config.man
 f 0444 root sys $mandir/man3/fltk.3 documentation/fltk.man
 
 # Library files
 f 0444 root sys $libdir/libfltk2.a lib/libfltk2.a
 f 0444 root sys $libdir/libfltk2_images.a lib/libfltk2_images.a
-f 0444 root sys $libdir/libfltk2_forms.a lib/libfltk2_forms.a
 %if GLDEMOS
 f 0444 root sys $libdir/libfltk2_gl.a lib/libfltk2_gl.a
 %endif
@@ -80,9 +74,6 @@ f 0444 root sys $libdir/libfltk2_gl.a lib/libfltk2_gl.a
 %if DSOPREFIX
 f 0555 root sys $libdir/$(DSOPREFIX)fltk2$(DSOSUFFIX) src/$(DSOPREFIX)fltk2$(DSOSUFFIX)
 l 0000 root sys $libdir/$(DSOPREFIX)fltk2$(DSOSYMLINK) $(DSOPREFIX)fltk2$(DSOSUFFIX)
-
-f 0555 root sys $libdir/$(DSOPREFIX)fltk2_forms$(DSOSUFFIX) src/$(DSOPREFIX)fltk2_forms$(DSOSUFFIX)
-l 0000 root sys $libdir/$(DSOPREFIX)fltk2_forms$(DSOSYMLINK) $(DSOPREFIX)fltk2_forms$(DSOSUFFIX)
 
 f 0555 root sys $libdir/$(DSOPREFIX)fltk2_images$(DSOSUFFIX) src/$(DSOPREFIX)fltk2_images$(DSOSUFFIX)
 l 0000 root sys $libdir/$(DSOPREFIX)fltk2_images$(DSOSYMLINK) $(DSOPREFIX)fltk2_images$(DSOSUFFIX)

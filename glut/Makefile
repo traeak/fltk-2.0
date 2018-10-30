@@ -120,7 +120,7 @@ include makedepend
 
 glpuzzle$(EXEEXT): glpuzzle.o ../lib/$(LIBPREFIX)fltk2_glut$(LIBSUFFIX)
 	echo Linking $@...
-	$(CXX) -I.. $(CXXFLAGS) $< $(LINKFLTKGLUT) $(GLDLIBS) -o $@
+	echo $(CXX) -I.. $(CXXFLAGS) $< $(LINKFLTKGLUT) $(GLDLIBS) -o $@
 	$(POSTBUILD) $@ ../fltk/mac.r
 
 fractals$(EXEEXT): fractals.o ../lib/$(LIBPREFIX)fltk2_glut$(LIBSUFFIX)
