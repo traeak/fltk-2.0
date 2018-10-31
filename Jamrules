@@ -1,0 +1,100 @@
+# project specific
+
+HDRS = $(TOP) $(TOP)/fltk/compat ;
+
+rule UserObject
+{
+	switch $(>)
+	{
+		case *.fl : Fluid $(<) : $(>) ;
+		case * : ECHO "unknown suffix on" $(>) ;
+	}
+}
+
+rule Fluid
+{
+	local objfile ;
+	makeGristedName objfile : $(<) ;
+	local flfile ;
+	makeGristedName flfile : $(>) ;
+	local cxxfile ;
+	cxxfile = $(flfile:S=.cxx) ;
+	Depends $(cxxfile) : $(flfile) ;
+	Fluid1 $(cxxfile) : $(flfile) ;
+	Cc $(objfile) : $(cxxfile) ;
+	Clean clean : $(cxxfile) $(cxxfile:S=.h) $(objfile) ;
+}
+
+actions Fluid1 # generates cxx/h files
+{
+	$(TOP)$(SLASH)fluid$(SLASH)fluid2$(SUFEXE) -c $(>)
+}
+
+# platform specific
+if $(UNIX)
+{
+	C++ = gcc ;
+	CC = gcc ;
+	LINK = gcc ;
+	AR = ar rU ;
+
+	OPTIM = -O3 ;
+#	OPTIM = -pg ;
+	C++FLAGS += -std=c++11 ;
+	C++FLAGS += -fno-strict-aliasing ;
+	C++FLAGS += -fno-stack-protector ;
+	C++FLAGS += -fpermissive ;
+	C++FLAGS += -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE ;
+	C++FLAGS += -D_THREAD_SAFE -D_REENTRANT ;
+	C++FLAGS += -DHAVE_GL -DUSE_XFT -DFL_LIBRARY ;
+
+	CCFLAGS = $(C++FLAGS) ;
+
+	PLATFORM_LIBS =
+		-lGLU -lGL
+		-lXext -lXft -lXrender -lfontconfig -lXcursor -lXi -lXinerama -lX11
+		-lfreetype
+		-lasound
+		-lpthread -ldl -lm -lc
+		-lstdc++
+#		-pg
+		;
+}
+else if $(NT)
+{
+	C++ = cl.exe ;
+	CC = cl.exe ;
+	AR = lib /LTCG ;
+	LINK = link /LTCG ;
+
+#	OPTIM = -O3 ;
+	C++FLAGS += /DHAVE_GL /DFL_LIBRARY ;
+	C++FLAGS += /D_THREAD_SAFE /D_REENTRANT ;
+	C++FLAGS += /MT ;
+#	C++FLAGS += /MD ;
+	C++FLAGS += /W3 /wd4820 /wd4996 /GR- /EHsc /D_WIN32 /DWIN32 /D__WIN32__ ;
+	C++FLAGS += /GL ;
+	C++FLAGS += /D_WINDOWS ;
+	C++FLAGS += /DWIN32_LEAN_AND_MEAN /DVC_EXTRA_LEAN /DWIN32_EXTRA_LEAN ;
+	CCFLAGS = $(C++FLAGS) ;
+
+	PLATFORM_LIBS =
+		glu32.lib
+		opengl32.lib
+		gdi32.lib
+		ws2_32.lib
+		shell32.lib
+		user32.lib
+		advapi32.lib
+		winmm.lib
+		ole32.lib
+		comctl32.lib
+		comdlg32.lib
+		;
+}
+
+FLTK2_LIBS =
+	$(TOP)/lib/libfltk2_images$(SUFLIB)
+	$(TOP)/lib/libfltk2_gl$(SUFLIB)
+	$(TOP)/lib/libfltk2$(SUFLIB)
+	;

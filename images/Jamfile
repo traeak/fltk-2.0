@@ -1,0 +1,43 @@
+SubDir TOP images ;
+
+echo Jamrules ;
+echo $(TOP) ;
+
+if $(UNIX)
+{
+	HDRS += /usr/include/freetype2 ;
+}
+
+OSX_SOURCES =
+	dlload_osx.cxx
+	;
+
+WIN32_SOURCES =
+	;
+
+X11_SOURCES =
+	;
+
+SOURCES =
+	FileIcon2.cxx
+	Fl_Guess_Image.cxx
+	fl_jpeg.cxx
+	fl_png.cxx
+	HelpDialog.cxx
+	images_core.cxx
+	pnmImage.cxx
+	xpmFileImage.cxx
+	;
+
+if $(UNIX)
+{
+	SOURCES += $(X11_SOURCES) ;
+}
+else if $(NT)
+{
+	SOURCES += $(WIN32_SOURCES) ;
+}
+
+Library $(TOP)$(SLASH)lib$(SLASH)libfltk2_images :
+	$(SOURCES)
+	;

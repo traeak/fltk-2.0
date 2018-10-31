@@ -1,0 +1,8 @@
+# this is top level Jamfile, toplevel Jamfile for project
+
+SubDir TOP ;
+
+SubInclude TOP src ;
+SubInclude TOP images ;
+SubInclude TOP OpenGL ;
+SubInclude TOP test ;

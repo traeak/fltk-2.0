@@ -1,0 +1,40 @@
+SubDir TOP OpenGL ;
+
+echo Jamrules ;
+echo $(TOP) ;
+
+if $(UNIX)
+{
+	HDRS += /usr/include/freetype2 ;
+}
+
+OSX_SOURCES =
+	dlload_osx.cxx
+	;
+
+WIN32_SOURCES =
+	;
+
+X11_SOURCES =
+	;
+
+SOURCES =
+	Fl_Gl_Choice.cxx
+	Fl_Gl_Overlay.cxx
+	Fl_Gl_Window.cxx
+	gl_draw.cxx
+	gl_start.cxx
+	;
+
+if $(UNIX)
+{
+	SOURCES += $(X11_SOURCES) ;
+}
+else if $(NT)
+{
+	SOURCES += $(WIN32_SOURCES) ;
+}
+
+Library $(TOP)$(SLASH)lib$(SLASH)libfltk2_gl :
+	$(SOURCES)
+	;
