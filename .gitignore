@@ -40,6 +40,8 @@ test/fullscreen
 test/gl_overlay
 test/glpuzzle
 test/hello
+test/help
+test/iconize
 test/image
 test/image_transform
 test/inactive
