@@ -55,6 +55,7 @@ if $(UNIX)
 		-lXext -lXft -lXrender -lfontconfig -lXcursor -lXi -lXinerama -lX11
 		-lfreetype
 		-lasound
+		-ljpeg -lpng
 		-lpthread -ldl -lm -lc
 		-lstdc++
 #		-pg
