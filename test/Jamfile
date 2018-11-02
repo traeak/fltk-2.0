@@ -1,21 +1,7 @@
 SubDir TOP test ;
 
-# Fluid CubeViewUI.cxx : CubeViewUI.fl ;
-# Fluid fast_slow.cxx : fast_slow.fl ;
-# Fluid inactive.cxx : inactive.fl ;
-# Fluid keyboard_ui.cxx : keyboard_ui.fl ;
-# Fluid mandelbrot_ui.cxx : mandelbrot_ui.fl ;
-# Fluid preferences.cxx : preferences.fl ;
-# Fluid radio.cxx : radio.fl ;
-# Fluid resize.cxx : resize.fl ;
-# Fluid tabs.cxx : tabs.fl ;
-# Fluid tree.cxx : tree.fl ;
-# Fluid valuators.cxx : valuators.fl ;
-
 SubDirHdrs $(TOP) ;
-SubDirHdrs $(TOP)/fltk/compat ;
 SubDirHdrs $(TOP)/images ;
-SubDirHdrs $(TOP)/fluid ;
 
 targets =
 #	adjuster.cxx 
@@ -35,7 +21,6 @@ targets =
 	demo.cxx
 	doublebuffer.cxx
 	editor.cxx
-#	fast_slow.fl
 #	fast_slow.cxx
 	file_chooser.cxx
 	fonts.cxx
@@ -60,18 +45,14 @@ targets =
 	pack.cxx
 #	pixmap_browser.cxx
 	pixmap.cxx
-#	radio.fl
 #	resizebox.cxx
-#	resize.fl
 #	rotated_text.cxx
 	scroll.cxx
 	shape.cxx
 	subwindow.cxx
 	symbols.cxx
-#	tabs.fl
 	threads.cxx
 	tile.cxx
-#	valuators.fl
 	;
 
 for target in $(targets)
@@ -79,39 +60,11 @@ for target in $(targets)
 	Main $(target:B) : $(target) ;
 }
 
-#Main mandelbrot : mandelbrot.cxx mandelbrot_ui.fl ;
-#Main keyboard : keyboard.cxx keyboard_ui.fl ;
-#Main CubeView : CubeMain.cxx CubeView.cxx CubeViewUI.fl ;
-#Main fracviewer : fractals.cxx fracviewer.cxx ;
-#Main unittests :
-#	unittest_about.cxx
-#	unittest_circles.cxx
-#	unittest_images.cxx
-#	unittest_lines.cxx
-#	unittest_points.cxx
-#	unittest_rects.cxx
-#	unittest_scrollbarsize.cxx
-#	unittests.cxx
-#	unittest_text.cxx
-#	unittest_viewport.cxx
-#	;
+LinkLibraries $(targets:B)$(SUFEXE) :
+	$(FLTK2_LIBS)
+	;
 
-LinkLibraries
-	$(targets:B)$(SUFEXE) 
-	mandelbrot
-	keyboard
-	CubeView
-	fracviewer
-	unittests ;
-
-LINKLIBS on
-	$(targets:B)$(SUFEXE) 
-	mandelbrot
-	keyboard
-	CubeView
-	fracviewer
-	unittests 
-	=
+LINKLIBS on $(targets:B)$(SUFEXE) =
 	$(FLTK2_LIBS)
 	$(PLATFORM_LIBS)
 	;
