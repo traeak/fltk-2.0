@@ -1,33 +1,13 @@
 # project specific
 
-HDRS = $(TOP) $(TOP)/fltk/compat ;
+HDRS = $(TOP) ;
 
 rule UserObject
 {
 	switch $(>)
 	{
-		case *.fl : Fluid $(<) : $(>) ;
 		case * : ECHO "unknown suffix on" $(>) ;
 	}
-}
-
-rule Fluid
-{
-	local objfile ;
-	makeGristedName objfile : $(<) ;
-	local flfile ;
-	makeGristedName flfile : $(>) ;
-	local cxxfile ;
-	cxxfile = $(flfile:S=.cxx) ;
-	Depends $(cxxfile) : $(flfile) ;
-	Fluid1 $(cxxfile) : $(flfile) ;
-	Cc $(objfile) : $(cxxfile) ;
-	Clean clean : $(cxxfile) $(cxxfile:S=.h) $(objfile) ;
-}
-
-actions Fluid1 # generates cxx/h files
-{
-	$(TOP)$(SLASH)fluid$(SLASH)fluid2$(SUFEXE) -c $(>)
 }
 
 # platform specific
