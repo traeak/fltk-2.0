@@ -54,19 +54,6 @@ public:
   static Tooltip* instance()	{ return instance_; }
 
   static NamedStyle* default_style;
-#ifdef FLTK_1_WIDGET  // back-compatability section:
-  static Widget* current()	{ return current_widget_; }
-  static Font* font()		{ return default_style->textfont(); }
-  static void font(Font* i)	{ default_style->textfont(i); }
-  static float size()		{ return default_style->labelsize(); }
-  static void size(float s)	{ default_style->labelsize(s); }
-  static void textcolor(Color c){ default_style->labelcolor(c); }
-  static Color textcolor()	{ return default_style->labelcolor(); }
-  static void color(Color c)	{ default_style->color(c); }
-  static Color color()		{ return default_style->color(); }
-  static void box(Box* b)	{ default_style->box(b); }
-  static Box* box()		{ return default_style->box(); }
-#endif
 
 private:
   static float delay_;

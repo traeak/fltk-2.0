@@ -56,16 +56,6 @@ public:
 
   int handle(int);
 
-#ifdef FLTK_1_SLIDER
-  void step(double a, int b) {step(a/b);}
-  void bounds(double a, double b) {minimum_=a; maximum_=b;}
-  void precision(int p) {
-    int B = 1;
-    for (int i=0; i<p; i++) B *= 10;
-    step_ = 1.0f/B;
-  }
-#endif
-
 //protected:
 
   Valuator(int X, int Y, int W, int H, const char* L);

@@ -51,12 +51,6 @@ public:
     TICK_RIGHT		= TICK_BELOW,
     TICK_BOTH		= TICK_ABOVE|TICK_BELOW,
     LOG			= 8
-#ifdef FLTK_1_SLIDER
-    // for back-compatability only
-    ,VERTICAL		= 0,
-    HORIZONTAL		= 1,
-    FILL		= 16
-#endif
   };
   bool horizontal() const {return !flag(LAYOUT_VERTICAL) || (type()&1);}
   bool log() const {return (type()&LOG)!=0;}
@@ -72,13 +66,6 @@ public:
   unsigned short tick_size() const {return tick_size_;}
   void tick_size(int n) {tick_size_ = (unsigned short)n;}
   
-#ifdef FLTK_1_SLIDER
-  // back comptability:
-  Box* slider() const {return buttonbox();}
-  void slider(Box* b) {buttonbox(b);}
-  void slider_size(double v) {slider_size(int(v*w()));}
-#endif
-
   //protected:
 
   int slider_position(double value, int w);

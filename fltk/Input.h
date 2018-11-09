@@ -61,15 +61,6 @@ public:
   bool static_text(const char*, int);
   const char* text() const {return text_;}
   char at(int i) const {return text_[i];}
-#ifdef FLTK_1_WIDGET  // back-compatability section:
-  char index(int i) const {return text_[i];}
-#endif
-#ifndef SKIP_DEPRECIATED
-  bool value(const char* v) {return text(v);}
-  bool value(const char* v, int n) {return text(v,n);}
-  bool static_value(const char* v) {return static_text(v);}
-  const char* value() const {return text_;}
-#endif
   int size() const {return size_;}
   void reserve(int newsize);
 

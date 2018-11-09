@@ -36,10 +36,6 @@ namespace fltk {
 
 class FL_API ThumbWheel : public Valuator {
 public:
-#ifdef FLTK_1_SLIDER
-  // for back-compatability only
-  enum {HORIZONTAL = 1};
-#endif
   int handle(int);
   ThumbWheel(int X,int Y,int W,int H,const char* L=0);
 
